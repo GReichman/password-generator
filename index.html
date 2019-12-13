@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Password Generator</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Gelasio&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <div class="container">
+        <div class="row contentRow">
+            <div class="col-lg-6">
+                <h1>Your Password is: </h1>
+                <textarea id="passwordBox" readonly="readonly">Not Generated Yet</textarea>
+                <br>
+                <button class="btn btn-primary" onclick="copyPassword()">Copy To Clipboard</button>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group row">
+                    <label for="numChars" class="col-4 col-form-label">Number of
+                        Characters(1-128)</label>
+                    <div class="col-8">
+                        <input class="form-control" type="number" value="8" min="1" max="128" id="numChars">
+                    </div>
+                </div>
+
+                <!-- https://mdbootstrap.com/docs/jquery/forms/checkbox/ -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="specialCheck" checked>
+                    <label class="custom-control-label" for="specialCheck">Special Characters</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="numCheck" checked>
+                    <label class="custom-control-label" for="numCheck">Numeric Characters</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="lowerCheck" checked>
+                    <label class="custom-control-label" for="lowerCheck">Lowercase Characters</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="upperCheck" checked>
+                    <label class="custom-control-label" for="upperCheck">Uppercase Characters</label>
+                </div>
+
+                <button class="btn btn-primary float-right" onclick="getInput()">
+                    Generate
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+        var includeSpecial = true;
+        var includeNum = true;
+        var includeLower = true;
+        var includeUpper = true;
+        var passLength = 1;
+        var specialChars = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+        var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+        var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var numChars = "0123456789";
+        var selectedChars = "";
+
+        function getInput() {
+            includeSpecial = document.getElementById("specialCheck").checked;
+            includeNum = document.getElementById("numCheck").checked;
+            includeLower = document.getElementById("lowerCheck").checked;
+            includeUpper = document.getElementById("upperCheck").checked;
+            passLength = document.getElementById("numChars").value;
+            generatePassword();
+        }//getInput
+
+        function generatePassword() {
+            var willGen = true;
+            if (!includeSpecial && !includeNum && !includeLower && !includeUpper) {
+                alert("You must select at least one checkbox");
+                willGen = false;
+            }//if no char sets selected
+            if (passLength < 1 || passLength > 128) {
+                alert("The number of characters must be between 1 and 128");
+                willGen = false;
+            }//if not enough/too many chars requested
+
+            if (willGen === true) {
+                //log what generator should do
+                console.log("Generating a password that is " + passLength + " characters long");
+                console.log("Special Characters: " + includeSpecial);
+                console.log("Numeric Characters: " + includeNum);
+                console.log("Lowercase Characters: " + includeLower);
+                console.log("Uppercase Characters: " + includeUpper);
+
+                //if statements to add the selected char sets to the master set
+                if (includeSpecial) {
+                    selectedChars += specialChars;
+                }
+                if (includeNum) {
+                    selectedChars += numChars;
+                }
+                if (includeLower) {
+                    selectedChars += lowerChars;
+                }
+                if (includeUpper) {
+                    selectedChars += upperChars;
+                }
+                createPassword();
+            }//else begin password generation
+
+        }//generatePassword
+
+        function createPassword() {
+            var newPass="";
+            for (let i = 0; i < passLength; i++) {
+                let randNum = Math.floor(Math.random() * Math.floor(selectedChars.length));
+                newPass+= selectedChars.charAt(randNum);
+            }//add a random character from the master set until newPass is the correct size
+
+            console.log("Password is: "+newPass);
+            console.log("Password size is: "+newPass.length);
+        }//createPassword
+
+
+        //https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
+        function copyPassword() {
+            var generatedPassword = document.getElementById("passwordBox");
+
+            if (generatedPassword.value === "Not Generated Yet") {
+                alert("no password has been generated yet");
+            }//if no password
+            else {
+                generatedPassword.select();
+                document.execCommand("copy");
+            }//else copy password
+        }
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+body{
+    font-family: 'Gelasio', serif;
+    background-image:  url('../pictures/email-pattern.png');
+}
+
+.contentRow{
+    margin-top:60px;
+    background-color: rgba(230,230,230,.5);
+}
+
+#passwordBox{
+width:70%; 
+height:40%;
+}
