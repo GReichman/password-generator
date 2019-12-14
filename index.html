@@ -143,8 +143,12 @@
 
             console.log("Password is: "+newPass);
             console.log("Password size is: "+newPass.length);
+            displayPassword(newPass);
         }//createPassword
 
+        function displayPassword(pass){
+            document.getElementById("passwordBox").textContent=pass;
+        }//displayPassword
 
         //https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
         function copyPassword() {
