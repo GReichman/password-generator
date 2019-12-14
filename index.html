@@ -27,45 +27,50 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <div class="container">
+    <div class="container ">
+        <div class="row justify-content-center " id="headerRow">
+            <div class="col-12 text-center">
+                <h1>Super Awesome Password Generator</h1>
+            </div>
+        </div>
         <div class="row contentRow">
-            <div class="col-lg-6">
+                <div class="contentCol col-xs-12 col-lg-6 rounded">
+                        <div class="form-group row">
+                            <label for="numChars" class="col-4 col-form-label">Character Count <br>(1-128)</label>
+                            <div class="col-8">
+                                <input class="form-control numBox" type="number" value="8" min="1" max="128" id="numChars">
+                            </div>
+                        </div>
+        
+                        <!-- https://mdbootstrap.com/docs/jquery/forms/checkbox/ -->
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="specialCheck" checked>
+                            <label class="custom-control-label" for="specialCheck">Special Characters</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="numCheck" checked>
+                            <label class="custom-control-label" for="numCheck">Numeric Characters</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="lowerCheck" checked>
+                            <label class="custom-control-label" for="lowerCheck">Lowercase Characters</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="upperCheck" checked>
+                            <label class="custom-control-label" for="upperCheck">Uppercase Characters</label>
+                        </div>
+        
+                        <button class="btn btn-primary float-right myButton" onclick="getInput()">
+                            Generate
+                        </button>
+                    </div>
+            <div class="contentCol col-xs-12 col-lg-6 rounded">
                 <h1>Your Password is: </h1>
                 <textarea id="passwordBox" readonly="readonly">Not Generated Yet</textarea>
                 <br>
-                <button class="btn btn-primary" onclick="copyPassword()">Copy To Clipboard</button>
+                <button class="btn btn-primary float-right myButton" onclick="copyPassword()">Copy</button>
             </div>
-            <div class="col-lg-6">
-                <div class="form-group row">
-                    <label for="numChars" class="col-4 col-form-label">Number of
-                        Characters(1-128)</label>
-                    <div class="col-8">
-                        <input class="form-control" type="number" value="8" min="1" max="128" id="numChars">
-                    </div>
-                </div>
 
-                <!-- https://mdbootstrap.com/docs/jquery/forms/checkbox/ -->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="specialCheck" checked>
-                    <label class="custom-control-label" for="specialCheck">Special Characters</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="numCheck" checked>
-                    <label class="custom-control-label" for="numCheck">Numeric Characters</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="lowerCheck" checked>
-                    <label class="custom-control-label" for="lowerCheck">Lowercase Characters</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="upperCheck" checked>
-                    <label class="custom-control-label" for="upperCheck">Uppercase Characters</label>
-                </div>
-
-                <button class="btn btn-primary float-right" onclick="getInput()">
-                    Generate
-                </button>
-            </div>
         </div>
 
     </div>
@@ -135,19 +140,19 @@
         }//generatePassword
 
         function createPassword() {
-            var newPass="";
+            var newPass = "";
             for (let i = 0; i < passLength; i++) {
                 let randNum = Math.floor(Math.random() * Math.floor(selectedChars.length));
-                newPass+= selectedChars.charAt(randNum);
+                newPass += selectedChars.charAt(randNum);
             }//add a random character from the master set until newPass is the correct size
 
-            console.log("Password is: "+newPass);
-            console.log("Password size is: "+newPass.length);
+            console.log("Password is: " + newPass);
+            console.log("Password size is: " + newPass.length);
             displayPassword(newPass);
         }//createPassword
 
-        function displayPassword(pass){
-            document.getElementById("passwordBox").textContent=pass;
+        function displayPassword(pass) {
+            document.getElementById("passwordBox").textContent = pass;
         }//displayPassword
 
         //https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f

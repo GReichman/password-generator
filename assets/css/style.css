@@ -4,11 +4,29 @@ body{
 }
 
 .contentRow{
-    margin-top:60px;
-    background-color: rgba(230,230,230,.5);
+    margin-top:30px;
+
+}
+
+.contentCol{
+    margin-top:20px;
+    padding:30px;
+    background-color: rgba(210,210,210,.8);
+}
+.numBox{
+    margin-top:10px;
+}
+
+.myButton{
+    width:90px;
+    height:40px;
+}
+
+#headerRow{
+margin-top:50px;
 }
 
 #passwordBox{
 width:70%; 
-height:40%;
+height:50%;
 }
