@@ -87,13 +87,14 @@
         var includeLower = true;
         var includeUpper = true;
         var passLength = 1;
-        var specialChars = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-        var lowerChars = "abcdefghijklmnopqrstuvwxyz";
-        var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var numChars = "0123456789";
+        const specialChars = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+        const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+        const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const numChars = "0123456789";
         var selectedChars = "";
 
         function getInput() {
+            selectedChars="";
             includeSpecial = document.getElementById("specialCheck").checked;
             includeNum = document.getElementById("numCheck").checked;
             includeLower = document.getElementById("lowerCheck").checked;

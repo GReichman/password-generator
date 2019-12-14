@@ -30,3 +30,8 @@ margin-top:50px;
 width:70%; 
 height:50%;
 }
+
+#numChars{
+    width:20%;
+    margin-left:0px;
+}
