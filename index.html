@@ -33,44 +33,48 @@
                 <h1>Super Awesome Password Generator</h1>
             </div>
         </div>
-        <div class="row contentRow">
-                <div class="contentCol col-xs-12 col-lg-6 rounded">
+        <div class="row contentRow justify-content-center">
+                <div class="contentCol col-xs-12 col-lg-5 rounded">
+                    <section id="inputContent">
                         <div class="form-group row">
-                            <label for="numChars" class="col-4 col-form-label">Character Count <br>(1-128)</label>
+                            <label for="numChars" class="col-4 col-form-label">Character Count <br>(8-128)</label>
                             <div class="col-8">
-                                <input class="form-control numBox" type="number" value="8" min="1" max="128" id="numChars">
+                                <input class="form-control numBox shadow" type="number" value="8" min="8" max="128" id="numChars">
                             </div>
                         </div>
         
                         <!-- https://mdbootstrap.com/docs/jquery/forms/checkbox/ -->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="specialCheck" checked>
-                            <label class="custom-control-label" for="specialCheck">Special Characters</label>
+                        <div class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input  " id="specialCheck" checked>
+                            <label class="custom-control-label " for="specialCheck">Special Characters</label>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="numCheck" checked>
-                            <label class="custom-control-label" for="numCheck">Numeric Characters</label>
+                        <div class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input " id="numCheck" checked>
+                            <label class="custom-control-label " for="numCheck">Numeric Characters</label>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="lowerCheck" checked>
-                            <label class="custom-control-label" for="lowerCheck">Lowercase Characters</label>
+                        <div class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input " id="lowerCheck" checked>
+                            <label class="custom-control-label " for="lowerCheck">Lowercase Characters</label>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="upperCheck" checked>
-                            <label class="custom-control-label" for="upperCheck">Uppercase Characters</label>
+                        <div class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input " id="upperCheck" checked>
+                            <label class="custom-control-label " for="upperCheck">Uppercase Characters</label>
                         </div>
         
-                        <button class="btn btn-primary float-right myButton" onclick="getInput()">
+                        <button class="btn btn-primary float-right shadow myButton" id="generateButton" onclick="getInput()">
                             Generate
                         </button>
+                    </section>
                     </div>
-            <div class="contentCol col-xs-12 col-lg-6 rounded">
-                <h1>Your Password is: </h1>
-                <textarea id="passwordBox" readonly="readonly">Not Generated Yet</textarea>
+            <div class="contentCol col-xs-12 col-lg-5 rounded">
+                <section id="passwordContent">
+                <h1 >Your Password is: </h1>
+                <textarea class="shadow" id="passwordBox" readonly="readonly">Not Generated Yet</textarea>
                 <br>
-                <button class="btn btn-primary float-right myButton" onclick="copyPassword()">Copy</button>
-            </div>
+                <button class="btn btn-primary float-right myButton shadow" id="copyButton" onclick="copyPassword()">Copy</button>
+            </section>
 
+            </div>
         </div>
 
     </div>
@@ -109,8 +113,8 @@
                 alert("You must select at least one checkbox");
                 willGen = false;
             }//if no char sets selected
-            if (passLength < 1 || passLength > 128) {
-                alert("The number of characters must be between 1 and 128");
+            if (passLength < 8 || passLength > 128) {
+                alert("The number of characters must be between 8 and 128");
                 willGen = false;
             }//if not enough/too many chars requested
 
